@@ -8,7 +8,7 @@ const config = require('config');
 
 const User = require('../../models/Users');
 
-// @route   POST aip/users
+// @route   POST api/users
 // @desc    register user
 // @access  Public (dont need token)
 // http://localhost:5100/api/users

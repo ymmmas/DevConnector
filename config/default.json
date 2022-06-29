@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://ymmas:ymmas@devconnector.chgc9.mongodb.net/?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://ymmas:ymmas@devconnector.chgc9.mongodb.net/?retryWrites=true&w=majority",
+    "jwtSecret": "secretToken"
 }

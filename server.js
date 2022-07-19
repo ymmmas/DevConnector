@@ -11,7 +11,7 @@ connectDB();
 
 // init middleware
 // allows us to get the data in request body
-app.use(express.json({ extended: false }));
+app.use(express.json());
 
 // app.get('/', (req,res)=> res.send('API Running'));
 
@@ -24,7 +24,7 @@ app.use('/api/posts', require('./routes/api/posts'));
 
 // serve static assets in production
 if (process.env.NODE_ENV === 'production') {
-  // set static folder
+  // Set static folder
   app.use(express.static('client/build'));
 
   app.get('*', (req, res) => {

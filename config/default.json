@@ -1,7 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://ymmas:ymmas@devconnector.chgc9.mongodb.net/?retryWrites=true&w=majority",
-    "jwtSecret": "secretToken",
-    "githubClientId":"580cf9128c3e08edb79f",
-    "githubSecret": "46fd634b25c9ff98bb29c8e85d8e38244520d4e5",
-    "githubToken":"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"
-}

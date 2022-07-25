@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions/post';
 
-const PostFrom = ({ addPost }) => {
+const PostForm = ({ addPost }) => {
   const [text, setText] = useState('');
+
   return (
     <div className='post-form'>
       <div className='bg-primary p'>
@@ -26,15 +27,15 @@ const PostFrom = ({ addPost }) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
           required
-        ></textarea>
+        />
         <input type='submit' className='btn btn-dark my-1' value='Submit' />
       </form>
     </div>
   );
 };
 
-PostFrom.propTypes = {
+PostForm.propTypes = {
   addPost: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addPost })(PostFrom);
+export default connect(null, { addPost })(PostForm);

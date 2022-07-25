@@ -18,14 +18,14 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       </li>
       <li>
         <Link to='/dashboard'>
-          <i className='fas fa-user'></i>{' '}
+          <i className='fas fa-user' />{' '}
           {/* this span makes only logo will be shown on mobile devices */}
           <span className='hide-sm'>Dashboard</span>
         </Link>
       </li>
       <li>
         <Link onClick={logout} to='#!'>
-          <i className='fas fa-sign-out-alt'></i>{' '}
+          <i className='fas fa-sign-out-alt' />{' '}
           <span className='hide-sm'>Logout</span>
         </Link>
       </li>
@@ -70,8 +70,8 @@ Navbar.propTypes = {
   auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProp = (state) => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProp, { logout })(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);

@@ -3,6 +3,7 @@ import {
   GET_POSTS,
   POST_ERROR,
   UPDATE_LIKES,
+  DELETE_POST,
   ADD_POST,
   GET_POST,
   ADD_COMMENT,
@@ -27,6 +28,12 @@ function postReducer(state = initialState, action) {
         posts: payload,
         loading: false,
       };
+    case GET_POST:
+      return {
+        ...state,
+        post: payload,
+        loading: false,
+      };
     case ADD_POST:
       return {
         ...state,
@@ -39,12 +46,6 @@ function postReducer(state = initialState, action) {
         ...state,
         // return all posts except the one that matches the payload id (the one that is deleted)
         posts: state.posts.filter((post) => post._id !== payload),
-        loading: false,
-      };
-    case GET_POST:
-      return {
-        ...state,
-        post: payload,
         loading: false,
       };
     case POST_ERROR:

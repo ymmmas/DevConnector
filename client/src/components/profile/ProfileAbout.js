@@ -14,7 +14,7 @@ const ProfileAbout = ({
         <Fragment>
           <h2 className='text-primary'>{name.trim().split(' ')[0]}'s Bio</h2>
           <p>{bio}</p>
-          <div className='line'></div>
+          <div className='line' />
         </Fragment>
       )}
 
@@ -22,7 +22,7 @@ const ProfileAbout = ({
       <div className='skills'>
         {skills.map((skill, index) => (
           <div key={index} className='p-1'>
-            <i className='fas fa-check'></i>
+            <i className='fas fa-check' />
             {skill}
           </div>
         ))}

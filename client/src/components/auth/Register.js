@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 // import axios from 'axios';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -22,22 +22,21 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert('Password do not match', 'danger');
+      setAlert('Passwords do not match', 'danger');
     } else {
       register({ name, email, password });
     }
   };
 
   if (isAuthenticated) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to='/dashboard' />;
   }
 
   return (
-    <Fragment>
       <section className='container'>
         <h1 className='large text-primary'>Sign Up</h1>
         <p className='lead'>
-          <i className='fas fa-user'></i> Create Your Account
+          <i className='fas fa-user' /> Create Your Account
         </p>
         <form className='form' onSubmit={onSubmit}>
           <div className='form-group'>
@@ -47,7 +46,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               name='name'
               value={name}
               onChange={onChange}
-              // required
             />
           </div>
           <div className='form-group'>
@@ -57,7 +55,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               name='email'
               value={email}
               onChange={onChange}
-              // required
             />
             <small className='form-text'>
               This site uses Gravatar so if you want a profile image, use a
@@ -72,7 +69,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               minLength='6'
               value={password}
               onChange={onChange}
-              // required
             />
           </div>
           <div className='form-group'>
@@ -82,8 +78,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               name='password2'
               value={password2}
               onChange={onChange}
-              // required
-              // minLength='6'
+              minLength='6'
             />
           </div>
           <input type='submit' className='btn btn-primary' value='Register' />
@@ -92,7 +87,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           Already have an account? <Link to='/login'>Sign In</Link>
         </p>
       </section>
-    </Fragment>
   );
 };
 
@@ -102,8 +96,8 @@ Register.propTypes = {
   isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated : state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { setAlert, register })(Register);

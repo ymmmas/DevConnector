@@ -43,17 +43,10 @@ router.post(
       }
 
       // get users gravatar
-      const avatar = normalize(
-        gravatar.url(email, {
-          // default size, string of 200
-          s: '200',
-          // rating is pg
-          r: 'pg',
-          // default img
-          d: 'mm',
-        }),
-        { forceHttps: true }
-      );
+      // default img public id public_id: 'avatar/r2qtwmasa787ahihhyap'
+      // default img tag <img src='http://res.cloudinary.com/dbwhdmlp8/image/upload/ar_1:1,b_rgb:ffffff,bo_2px_solid_rgb:ffffff,c_fill,g_auto,r_max,w_860/v1/avatar/r2qtwmasa787ahihhyap' width='860'/>
+
+      const avatar = `http://res.cloudinary.com/dbwhdmlp8/image/upload/ar_1:1,b_rgb:ffffff,bo_2px_solid_rgb:ffffff,c_fill,g_auto,r_max,w_860/v1/avatar/r2qtwmasa787ahihhyap`
 
       // creates a new user instance only, not actually saved
       user = new User({

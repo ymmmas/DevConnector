@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   avatar: {
-    // allows you to attach profile image to your email
+    // cloudinary string
     type: String,
   },
   date: {

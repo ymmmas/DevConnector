@@ -5,6 +5,7 @@ const { check, validationResult } = require('express-validator');
 const axios = require('axios');
 const config = require('config');
 const checkObjectId = require('../../middleware/checkObjectId');
+const cloudinary = require('cloudinary');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/Users');
@@ -50,6 +51,7 @@ router.post(
 
     // destructure the request
     const {
+      avatar,
       website,
       skills,
       youtube,
@@ -61,7 +63,40 @@ router.post(
       ...rest
     } = req.body;
 
+    // deal with image
+
+    if (avatar!= null) {
+      var EditedImageURL = '';
+
+      try {
+        // Upload the image
+        const uploadedImage = await cloudinary.v2.uploader.upload(avatar, {
+          folder: 'avatar',
+        });
+
+        const publicId = uploadedImage.public_id;
+
+        const width = uploadedImage.width;
+
+        EditedImageURL = await cloudinary.url(publicId, {
+          aspect_ratio: '1:1',
+          background: '#ffffff',
+          border: '2px_solid_rgb:ffffff',
+          gravity: 'auto',
+          radius: 'max',
+          width: width,
+          crop: 'fill',
+        });
+
+        // console.log(uploadedImage);
+        // console.log(EditedImageURL);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
     // bulid profile object
+
     const profileFields = {
       user: req.user.id,
       website:
@@ -82,6 +117,7 @@ router.post(
       if (value && value.length > 0)
         socialfields[key] = normalize(value, { forceHttps: true });
     }
+
     // add to profileFields
     profileFields.social = socialfields;
 
@@ -93,6 +129,12 @@ router.post(
         { $set: profileFields },
         { new: true, upsert: true, setDefaultsOnInsert: true }
       );
+      if (avatar!= null) {
+        await User.findOneAndUpdate(
+          { _id: req.user.id },
+          { avatar: EditedImageURL }
+        );
+      }
       return res.json(profile);
     } catch (err) {
       console.error(err.message);

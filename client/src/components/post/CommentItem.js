@@ -7,7 +7,8 @@ import { deleteComment } from '../../actions/post';
 
 const CommentItem = ({
   postId,
-  comment: { _id, text, name, avatar, user, date },
+  // user:{avatar},
+  comment: { _id, text, avatar, name, user, date },
   auth,
   deleteComment,
 }) => {
@@ -41,6 +42,7 @@ const CommentItem = ({
 CommentItem.propTypes = {
   postId: PropTypes.string.isRequired,
   comment: PropTypes.object.isRequired,
+  // user:PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   deleteComment: PropTypes.func.isRequired,
 };

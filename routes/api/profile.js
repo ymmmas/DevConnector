@@ -65,7 +65,7 @@ router.post(
 
     // deal with image
 
-    if (avatar!= null) {
+    if (avatar != null) {
       var EditedImageURL = '';
 
       try {
@@ -87,9 +87,6 @@ router.post(
           width: width,
           crop: 'fill',
         });
-
-        // console.log(uploadedImage);
-        // console.log(EditedImageURL);
       } catch (error) {
         console.error(error);
       }
@@ -129,10 +126,22 @@ router.post(
         { $set: profileFields },
         { new: true, upsert: true, setDefaultsOnInsert: true }
       );
-      if (avatar!= null) {
+      if (avatar != null) {
+        // update the avatar in user db
         await User.findOneAndUpdate(
           { _id: req.user.id },
           { avatar: EditedImageURL }
+        );
+        // update the avatar in posts
+        await Post.updateMany(
+          { user: req.user.id },
+          { avatar: EditedImageURL }
+        );
+        // update the avatar in comments 
+        await Post.updateMany(
+          {},
+          { $set: { 'comments.$[elem].avatar': EditedImageURL } },
+          { arrayFilters: [{ 'elem.user': req.user.id }] }
         );
       }
       return res.json(profile);

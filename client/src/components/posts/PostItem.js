@@ -10,7 +10,8 @@ const PostItem = ({
   addLike,
   deletePost,
   removeLike,
-  post: { _id, text, name, avatar, user, likes, comments, date },
+  // user: {avatar},
+  post: { _id, text, name, avatar, user,likes, comments, date },
   showActions,
 }) => (
   <div className='post bg-white p-1 my-1'>
@@ -70,6 +71,7 @@ PostItem.defaultProps = {
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  // user:PropTypes.object.isRequired,
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,

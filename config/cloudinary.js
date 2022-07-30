@@ -1,4 +1,4 @@
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require('cloudinary');
 const config = require('config');
 const cloudName = config.get('cloud_name');
 const apiKey = config.get('api_key');
